@@ -1,30 +1,31 @@
-// Concrete Citizen class extends User
-public class Citizen extends User {
-    private String citizenId;
+public class Citizen extends Person {
+    private String email;
     private String address;
 
-    // Constructor that calls the User constructor via super()
-    public Citizen(String citizenId, String name, String email, String phone, String address) {
-        super(name, email, phone);
-        this.citizenId = citizenId;
+    public Citizen(int id, String name, String phoneNumber, String email, String address) {
+        super(id, name, phoneNumber);  // calls constructor of Person
+        this.email = email;
         this.address = address;
     }
 
-    // Getters for citizen-specific fields
-    public String getCitizenId() {
-        return citizenId;
+    // Getters
+    public String getEmail() {
+        return email;
     }
 
     public String getAddress() {
         return address;
     }
 
-    // Setters if you want to allow updates
-    public void setCitizenId(String citizenId) {
-        this.citizenId = citizenId;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    // Optional: toString() for testing and printing
+    @Override
+    public String toString() {
+        return "Citizen{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                '}';
     }
 }

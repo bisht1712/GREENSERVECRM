@@ -1,41 +1,28 @@
 public class ServiceType {
-    private int serviceTypeId;
-    private String name;
-    private String description;
+    private int serviceId;
+    private String serviceName;
 
-    public ServiceType(int serviceTypeId, String name, String description) {
-        this.serviceTypeId = serviceTypeId;
-        this.name = name;
-        this.description = description;
+    // Constructor
+    public ServiceType(int serviceId, String serviceName) {
+        this.serviceId = serviceId;
+        this.serviceName = serviceName;
     }
 
-    // Getters and setters
-    public int getServiceTypeId() {
-        return serviceTypeId;
+    // Getters
+    public int getServiceId() {
+        return serviceId;
     }
 
-    public void setServiceTypeId(int serviceTypeId) {
-        this.serviceTypeId = serviceTypeId;
+    public String getServiceName() {
+        return serviceName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
+    // toString
     @Override
     public String toString() {
-        return name; // For easy display
+        return "ServiceType{" +
+                "serviceId=" + serviceId +
+                ", serviceName='" + serviceName + '\'' +
+                '}';
     }
 }
