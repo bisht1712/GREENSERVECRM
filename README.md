@@ -65,7 +65,7 @@ All tables are interlinked using foreign keys to maintain referential integrity.
 ```bash
 javac -cp ".;mysql-connector-java-8.0.xx.jar" Main.java
 java -cp ".;mysql-connector-java-8.0.xx.jar" Main
-
+```
 
 ### Steps:
 1. Clone or Download
