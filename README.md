@@ -58,9 +58,27 @@ All tables are interlinked using foreign keys to maintain referential integrity.
 - Java installed
 
 ### Steps:
-1. Run the `schema.sql` file in MySQL Workbench to create the database and tables.
-2. Update the database credentials in `DBUtil.java`.
-3. Compile and run the application using:
-   ```bash
+1. Clone or Download
+2. Run the `schema.sql` file in MySQL Workbench to create the database and tables.
+3. Update the database credentials in `DBUtil.java`.
+4. To verify that your connection works before      running the full app,In Main.java, temporarily add this code:
+```java
+try {
+    Connection con = DBUtil.getConnection();
+    if (con != null && !con.isClosed()) {
+        System.out.println("JDBC Connection successful!");
+    } else {
+        System.out.println("Connection failed.");
+    }
+    con.close();
+} catch (Exception e) {
+    e.printStackTrace();
+}
+```
+
+5. Compile and run the application using:
+```bash
    javac Main.java
    java Main
+```
+6. ![Console Output](screenshots/connection.png)
