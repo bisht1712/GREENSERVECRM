@@ -1,3 +1,5 @@
+create database greenservecrm;
+use greenservecrm;
 CREATE TABLE citizen (
     citizen_id INT PRIMARY KEY AUTO_INCREMENT,
     citizen_name VARCHAR(100) NOT NULL,
