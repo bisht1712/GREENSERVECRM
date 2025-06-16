@@ -1,6 +1,7 @@
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.sql.Connection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
@@ -41,44 +42,6 @@ System.out.println("All Citizens in the system:");
 for (Citizen c : allCitizens) {
     System.out.println(c);
 }*/
-
-
-        // // Creating a sample Request
-        // Request request = new Request(
-        //         1,                  // requestId
-        //         101,                // citizenId
-        //         201,                // technicianId
-        //         1,                  // serviceId
-        //         Status.PENDING,     // status (enum)
-        //         Priority.HIGH,      // priority (enum)
-        //         LocalDate.now()     // submissionDate
-        // );
-
-        // // Print the request
-        // System.out.println("Testing Request object:");
-        // System.out.println(request);
-
-        // // Accessing individual values (optional)
-        // System.out.println("Status: " + request.getStatus());
-        // System.out.println("Priority: " + request.getPriority());
-        // ServiceType service = new ServiceType(1, "Solar Installation");
-        // System.out.println(service);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 //INSERT request
 RequestDAO dao = new RequestDAO();
@@ -145,6 +108,29 @@ System.out.println("Delete status: " + deleted);*/
 
        
 
+// PRIORITY QUEUE FILTERING CHECK
+/*List<Request> allRequests = dao.getAllRequests();
+
+// Create a priority queue to sort HIGH > MEDIUM > LOW
+PriorityQueue<Request> pendingQueue = new PriorityQueue<>(new Comparator<Request>() {
+    @Override
+    public int compare(Request r1, Request r2) {
+        return r1.getPriority().compareTo(r2.getPriority());
+    }
+});
+
+// Add only PENDING requests
+for (Request req : allRequests) {
+    if (req.getStatus() == Status.PENDING) {
+        pendingQueue.add(req);
+    }
+}
+
+// Print pending requests
+System.out.println("Pending Requests (by priority):");
+while (!pendingQueue.isEmpty()) {
+    System.out.println(pendingQueue.poll());
+}*/
 
     }
 }

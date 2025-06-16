@@ -81,4 +81,36 @@ try {
    javac Main.java
    java Main
 ```
-6. ![Console Output](screenshots/connection.png)
+6. Console Output (screenshots/connection.png)
+---
+
+## 7. Screenshots
+
+### 7.1 Add Citizen
+![Insertion Check](screenshots/citizeninsert.png)
+
+### 7.2 All Citizens in the System
+![All Citizens](screenshots/view_citizen_record.png)
+
+### 7.3 Update Citizen
+![Updatioon Check](screenshots/citizenupdate.png)
+
+### 7.4 Delete Citizen
+![Deletion Check](screenshots/citizendelete.png)
+
+### 7.5 Insert Request
+![Insertion Check](screenshots/add_request.png)
+
+### 7.6 View Request
+![All Requests](screenshots/view_all_request.png)
+
+### 7.7 Update Request
+![Updation Check](screenshots/update_request.png)
+
+### 7.8 Delete Request
+![Deletion Check](screenshots/request_delete.png)
+
+### 7.9 Pending Requests by Priority
+![Priority Queue](screenshots/priorityqueue.png)
+
+---
