@@ -54,8 +54,18 @@ All tables are interlinked using foreign keys to maintain referential integrity.
 ## 5. How to Run
 
 ### Prerequisites:
+### Prerequisites:
+- Java installed (JDK 8+)
 - MySQL installed and configured
-- Java installed
+- **MySQL Connector/J** (JDBC driver)
+
+> Make sure to download and install the [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/) `.jar` file.
+> - Place the `.jar` file in your project folder or configure it in your IDE.
+> - If running from terminal, include it in the classpath like this:
+```bash
+javac -cp ".;mysql-connector-java-8.0.xx.jar" Main.java
+java -cp ".;mysql-connector-java-8.0.xx.jar" Main
+
 
 ### Steps:
 1. Clone or Download
@@ -81,36 +91,39 @@ try {
    javac Main.java
    java Main
 ```
-6. Console Output (screenshots/connection.png)
+6. Console Output  
+This is the output of a successful JDBC connection:
+
+![Console Output](screenshots/connection.png)
 ---
 
-## 7. Screenshots
+## 6. Screenshots
 
-### 7.1 Add Citizen
+### 6.1 Add Citizen
 ![Insertion Check](screenshots/citizeninsert.png)
 
-### 7.2 All Citizens in the System
+### 6.2 All Citizens in the System
 ![All Citizens](screenshots/view_citizen_record.png)
 
-### 7.3 Update Citizen
+### 6.3 Update Citizen
 ![Updatioon Check](screenshots/citizenupdate.png)
 
-### 7.4 Delete Citizen
+### 6.4 Delete Citizen
 ![Deletion Check](screenshots/citizendelete.png)
 
-### 7.5 Insert Request
+### 6.5 Insert Request
 ![Insertion Check](screenshots/add_request.png)
 
-### 7.6 View Request
+### 6.6 View Request
 ![All Requests](screenshots/view_all_request.png)
 
-### 7.7 Update Request
+### 6.7 Update Request
 ![Updation Check](screenshots/update_request.png)
 
-### 7.8 Delete Request
+### 6.8 Delete Request
 ![Deletion Check](screenshots/request_delete.png)
 
-### 7.9 Pending Requests by Priority
+### 6.9 Pending Requests by Priority
 ![Priority Queue](screenshots/priorityqueue.png)
 
 ---
