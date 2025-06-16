@@ -1,1 +1,0 @@
-CitizenDAO dao = new CitizenDAO();

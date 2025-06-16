@@ -49,3 +49,9 @@ select * from technician;
 INSERT INTO request (citizen_id, technician_id, service_id, status, priority)
 VALUES (3, 1, 2, 'PENDING', 'HIGH');
 select* from request;
+
+INSERT INTO request (citizen_id, technician_id, service_id, status, priority)
+VALUES 
+(5, 1, 1, 'PENDING', 'HIGH'),
+(6, 2, 2, 'PENDING', 'LOW'),
+(3, 1, 3, 'PENDING', 'MEDIUM');
