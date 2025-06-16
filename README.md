@@ -31,6 +31,8 @@ Tables used:
 
 All tables are interlinked using foreign keys to maintain referential integrity.
 
+### ERD Diagram
+![ERD Diagram](screenshots/erd.png)
 ---
 
 ## 4. Features Implemented
