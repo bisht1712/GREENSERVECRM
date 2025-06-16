@@ -18,7 +18,7 @@ public class CitizenDAO {
             pst.setString(4, citizen.getAddress());
                         int rowsInserted = pst.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("✅ Citizen inserted successfully.");
+                System.out.println("Citizen inserted successfully.");
             }
 
         } catch (Exception e) {
@@ -54,24 +54,55 @@ public class CitizenDAO {
         return citizens;
     }
 
-    public void deleteCitizen(int id) {
-    String query = "DELETE FROM citizen WHERE citizen_id = ?";
+        public boolean deleteCitizenByEmail(String email) {
+            String query = "DELETE FROM citizen WHERE email = ?";
+
+            try (Connection con = DBUtil.getConnection();
+                PreparedStatement pst = con.prepareStatement(query)) {
+
+                pst.setString(1, email);
+                int rowsDeleted = pst.executeUpdate();
+
+                if (rowsDeleted > 0) {
+                    System.out.println("Citizen with email '" + email + "' deleted successfully.");
+                    return true;
+                } else {
+                    System.out.println("No citizen found with email '" + email + "'.");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return false;
+        }
+
+    public boolean updateCitizenByEmail(String email, String newName, String newPhoneNumber, String newAddress) {
+    String query = "UPDATE citizen SET citizen_name = ?, phone_number = ?, address = ? WHERE email = ?";
 
     try (Connection con = DBUtil.getConnection();
          PreparedStatement pst = con.prepareStatement(query)) {
 
-        pst.setInt(1, id);
-        int rowsDeleted = pst.executeUpdate();
+        pst.setString(1, newName);
+        pst.setString(2, newPhoneNumber);
+        pst.setString(3, newAddress);
+        pst.setString(4, email);
 
-        if (rowsDeleted > 0) {
-            System.out.println(" Citizen with ID " + id + " deleted successfully.");
+        int rowsUpdated = pst.executeUpdate();
+        if (rowsUpdated > 0) {
+            System.out.println("Citizen with email '" + email + "' updated successfully.");
+            return true;
         } else {
-            System.out.println("No citizen found with ID " + id);
+            System.out.println("No citizen found with email '" + email + "'.");
         }
 
     } catch (Exception e) {
         e.printStackTrace();
     }
+
+    return false;
 }
+
+
 
 }

@@ -30,3 +30,22 @@ CREATE TABLE request (
     FOREIGN KEY (technician_id) REFERENCES technician(technician_id),
     FOREIGN KEY (service_id) REFERENCES service_type(service_id)
 );
+
+
+INSERT INTO service_type (service_name)
+VALUES 
+('Waste Management'),
+('Solar Installation'),
+('Pollution Control');
+select* from service_type;
+
+INSERT INTO technician (tech_name, phone_number, skill_area)
+VALUES 
+('Ravi Kumar', '9999999990', 'Solar Installation'),
+('Sneha Singh', '8888888888', 'Waste Management');
+
+select * from technician;
+
+INSERT INTO request (citizen_id, technician_id, service_id, status, priority)
+VALUES (3, 1, 2, 'PENDING', 'HIGH');
+select* from request;
