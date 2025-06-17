@@ -1,136 +1,95 @@
-import java.sql.Connection;
-import java.time.LocalDate;
-import java.sql.Connection;
-import java.util.Comparator;
 import java.util.List;
-import java.util.PriorityQueue;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        CitizenDAO citizenDAO = new CitizenDAO();
+        Scanner scanner = new Scanner(System.in);
 
-// 1. check connection
-/*  try {
-    Connection con = DBUtil.getConnection();
-    if (con != null && !con.isClosed()) {
-        System.out.println("JDBC Connection successful!");
-    } else {
-        System.out.println("Connection failed.");
-    }
-    con.close();
-} catch (Exception e) {
-    e.printStackTrace();
-} */  
+        while (true) {
+            System.out.println("\n----- Citizen Management -----");
+            System.out.println("1. Add Citizen");
+            System.out.println("2. View All Citizens");
+            System.out.println("3. Update Citizen by Email");
+            System.out.println("4. Delete Citizen by Email");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
 
+            int choice = Integer.parseInt(scanner.nextLine());
 
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter name: ");
+                    String name = scanner.nextLine();
+                    System.out.print("Enter email: ");
+                    String email = scanner.nextLine();
+                    System.out.print("Enter phone number: ");
+                    String phone = scanner.nextLine();
+                    System.out.print("Enter address: ");
+                    String address = scanner.nextLine();
 
-//Insert Citizen
-/*CitizenDAO citizenDAO = new CitizenDAO();
-Citizen c1 = new Citizen(0, "Ishaan Verma", "9123456789", "ishaan@example.com", "Jaipur");
-citizenDAO.addCitizen(c1);*/
+                    Citizen newCitizen = new Citizen(0, name, phone, email, address);
+                    citizenDAO.addCitizen(newCitizen);
+                    break;
 
+                case 2:
+                    List<Citizen> citizens = citizenDAO.getAllCitizens();
+                    for (Citizen c : citizens) {
+                        System.out.println(c);
+                    }
+                    break;
 
-// UPDATE 
-/*citizenDAO.updateCitizenByEmail("ishaan@example.com", "Ishaan V.", "9000000000", "Udaipur");*/
+                
+                case 3:
+                System.out.print("Enter email of citizen to update: ");
+                String emailToUpdate = scanner.nextLine();
 
-//DELETE
-/*citizenDAO.deleteCitizenByEmail("ishaan@example.com");*/
+                // Fetch the existing citizen
+                List<Citizen> allCitizens = citizenDAO.getAllCitizens();
+                Citizen oldCitizen = null;
+                for (Citizen c : allCitizens) {
+                    if (c.getEmail().equalsIgnoreCase(emailToUpdate)) {
+                        oldCitizen = c;
+                        break;
+                    }
+                }
 
-//VIEW all citizens
-/*List<Citizen> allCitizens = citizenDAO.getAllCitizens();
+                if (oldCitizen == null) {
+                    System.out.println("No citizen found with email: " + emailToUpdate);
+                    break;
+                }
 
-System.out.println("All Citizens in the system:");
-for (Citizen c : allCitizens) {
-    System.out.println(c);
-}*/
-    
-//INSERT request
-RequestDAO dao = new RequestDAO();
+                System.out.print("Enter new name (leave blank to keep '" + oldCitizen.getName() + "'): ");
+                String newName = scanner.nextLine();
+                if (newName.isEmpty()) newName = oldCitizen.getName();
 
-       /*  Request request = new Request(
-            0,              
-            8,              
-            1,             
-            2,              
-            Status.PENDING, 
-            Priority.HIGH,  
-            LocalDate.now() 
-        );
+                System.out.print("Enter new phone number (leave blank to keep '" + oldCitizen.getPhoneNumber() + "'): ");
+                String newPhone = scanner.nextLine();
+                if (newPhone.isEmpty()) newPhone = oldCitizen.getPhoneNumber();
 
-        dao.addRequest(request);*/
+                System.out.print("Enter new address (leave blank to keep '" + oldCitizen.getAddress() + "'): ");
+                String newAddress = scanner.nextLine();
+                if (newAddress.isEmpty()) newAddress = oldCitizen.getAddress();
 
-//VIEW all requests
-
-/*List<Request> requests = dao.getAllRequests();
-
-for (Request req : requests) {
-    System.out.println(req);
-}*/
-
-
-//UPDATE request
-/*Request updatedReq = new Request(
-    7,                  
-    8,                  
-    1,                 
-    1,                 
-    Status.IN_PROGRESS, 
-    Priority.HIGH,      
-    LocalDate.now()     
-);
-
-dao.updateRequest(updatedReq);*/
-
-//DELETE request
-/*boolean deleted = dao.deleteRequestById(7); // Replace with correct ID
-System.out.println("Delete status: " + deleted);*/
+                citizenDAO.updateCitizenByEmail(emailToUpdate, newName, newPhone, newAddress);
+                break;
 
 
 
-// List<Request> requests = requestDAO.getAllRequests();
-// System.out.println("Requests in system:");
-// for (Request r : requests) {
-//     System.out.println(r);
-// }
+                case 4:
+                    System.out.print("Enter email of citizen to delete: ");
+                    String emailToDelete = scanner.nextLine();
+                    citizenDAO.deleteCitizenByEmail(emailToDelete);
+                    break;
 
-// // Update request with ID 1
-// Request updated = new Request(1, 3, 1, 1, Status.COMPLETED, Priority.LOW, LocalDate.now());
-// requestDAO.updateRequest(updated);
+                case 5:
+                    System.out.println("Exiting...");
+                    scanner.close();
+                    System.exit(0);
 
-// // Delete request with ID 2
-// requestDAO.deleteRequestById(2);
-
-// // Print updated list
-// System.out.println("Requests after update and delete:");
-// requests = requestDAO.getAllRequests();
-// for (Request r : requests) {
-//     System.out.println(r);
-// }
-
-       
-
-// PRIORITY QUEUE FILTERING CHECK
-/*List<Request> allRequests = dao.getAllRequests();
-
-// Create a priority queue to sort HIGH > MEDIUM > LOW
-PriorityQueue<Request> pendingQueue = new PriorityQueue<>(new Comparator<Request>() {
-    @Override
-    public int compare(Request r1, Request r2) {
-        return r1.getPriority().compareTo(r2.getPriority());
-    }
-});
-
-// Add only PENDING requests
-for (Request req : allRequests) {
-    if (req.getStatus() == Status.PENDING) {
-        pendingQueue.add(req);
-    }
-}
-
-// Print pending requests
-System.out.println("Pending Requests (by priority):");
-while (!pendingQueue.isEmpty()) {
-    System.out.println(pendingQueue.poll());
-}*/
-
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
     }
 }
