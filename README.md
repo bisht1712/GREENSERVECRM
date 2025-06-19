@@ -38,6 +38,8 @@ All tables are interlinked using foreign keys to maintain referential integrity.
 
 ### ERD Diagram
 ![ERD Diagram](screenshots/erd.png)
+
+
 ---
 
 ## 4. Features Implemented
@@ -88,6 +90,7 @@ The project follows an organized object-oriented structure with the following ke
   Used to verify JDBC connection setup before running the full application.
 
 
+
 ### Functionalities
 
 This project enables efficient management and tracking of citizen service requests with the following features:
@@ -104,11 +107,13 @@ This project enables efficient management and tracking of citizen service reques
 - Update an existing request using request ID
 - Delete a request using request ID
 
-#### 🔎 Request Filtering and Prioritization
+#### Request Filtering and Prioritization
 - Automatically filter and display only `PENDING` requests
 
 #### JDBC Connectivity
 - Successfull integration with MySQL database using JDBC to perform CRUD operations on databse using Java.
+
+
 
 ---
 
