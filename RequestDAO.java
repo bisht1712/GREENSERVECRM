@@ -20,7 +20,7 @@ public class RequestDAO {
 
             int rowsInserted = pst.executeUpdate();
             if (rowsInserted > 0) {
-                System.out.println("✅ Request added successfully.");
+                System.out.println(" Request added successfully.");
             }
 
         } catch (Exception e) {
